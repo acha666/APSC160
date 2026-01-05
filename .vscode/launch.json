@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+
+      "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+
+      "cwd": "${workspaceFolder}/run",
+      "environment": [],
+      "externalConsole": false,
+
+      "preLaunchTask": "build: auto (debug)",
+
+      "linux": {
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb"
+      },
+      "osx": {
+        "MIMode": "lldb"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build: auto (debug)",
+      "type": "shell",
+      "command": "bash",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "args": [
+        "-lc",
+        "set -euo pipefail; src=\"${file}\"; ext=\"${fileExtname}\"; relDir=\"${relativeFileDirname}\"; outDir=\"${workspaceFolder}/build/${relativeFileDirname}\"; out=\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"; mkdir -p \"$outDir\"; if [ \"$(uname)\" = \"Darwin\" ]; then CC=clang; CXX=clang++; else CC=gcc; CXX=g++; fi; case \"$ext\" in .c) \"$CC\" -std=c17 -g -O0 -Wall -Wextra \"$src\" -o \"$out\" ;; .cc|.cpp|.cxx|.C) \"$CXX\" -std=c++20 -g -O0 -Wall -Wextra \"$src\" -o \"$out\" ;; *) echo \"Unsupported extension: $ext (only .c .cc .cpp .cxx .C)\" >&2; exit 2 ;; esac"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": { "kind": "build", "isDefault": true }
+    },
+    {
+      "label": "run: active (cwd=run)",
+      "type": "shell",
+      "command": "bash",
+      "options": {
+        "cwd": "${workspaceFolder}/run"
+      },
+      "args": [
+        "-lc",
+        "\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\""
+      ],
+      "dependsOn": "build: auto (debug)",
+      "problemMatcher": []
+    }
+  ]
+}

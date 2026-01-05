@@ -1,0 +1,24 @@
+# build outputs
+/build/
+
+# macOS debug symbols
+*.dSYM/
+
+# VS Code C/C++ database artifacts
+.vscode/.browse.VC.db*
+.vscode/ipch/
+
+# generic
+*.o
+*.obj
+*.exe
+*.out
+a.out
+
+# ---- run directory: keep folder + docs, ignore everything else ----
+/run/*
+!/run/.gitkeep
+
+# ---- workspace: keep folder + docs, ignore everything else ----
+/workspace/*
+!/workspace/.gitkeep

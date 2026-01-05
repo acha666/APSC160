@@ -1,0 +1,19 @@
+{
+  "name": "c-cpp-lab (codespaces)",
+  "image": "mcr.microsoft.com/devcontainers/cpp:1-noble",
+
+  "remoteUser": "vscode",
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gdb clangd clang-format",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "llvm-vs-code-extensions.vscode-clangd",
+        "xaver.clang-format",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
