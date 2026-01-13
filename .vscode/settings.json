@@ -4,10 +4,6 @@
   "C_Cpp.default.cStandard": "c17",
   "C_Cpp.default.cppStandard": "c++20",
 
-  "files.associations": {
-    "*.h": "c"
-  },
-
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.formatting": "disabled",
 
@@ -29,7 +25,5 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "clang-format.style": "file"
+  }
 }
