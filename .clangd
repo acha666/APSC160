@@ -1,0 +1,25 @@
+CompileFlags:
+  Add:
+    - "-Wall"
+    - "-Wextra"
+    - "-Wpedantic"
+  Remove:
+    - "-W*" # Remove all warnings flags to avoid conflicts
+
+Diagnostics:
+  ClangTidy:
+    Add:
+      - readability-*
+      - modernize-*
+      - performance-*
+    Remove:
+      - modernize-use-trailing-return-type
+  UnusedIncludes: Strict
+
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+
+Hover:
+  ShowAKA: Yes

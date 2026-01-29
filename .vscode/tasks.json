@@ -3,6 +3,7 @@
   "tasks": [
     {
       "label": "build: auto (debug)",
+      "detail": "Build active C/C++ file with debug symbols",
       "type": "shell",
       "command": "bash",
       "options": {
@@ -10,13 +11,48 @@
       },
       "args": [
         "-lc",
-        "set -euo pipefail; src=\"${file}\"; ext=\"${fileExtname}\"; relDir=\"${relativeFileDirname}\"; outDir=\"${workspaceFolder}/build/${relativeFileDirname}\"; out=\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"; mkdir -p \"$outDir\"; if [ \"$(uname)\" = \"Darwin\" ]; then CC=clang; CXX=clang++; else CC=gcc; CXX=g++; fi; case \"$ext\" in .c) \"$CC\" -std=c17 -g -O0 -Wall -Wextra \"$src\" -o \"$out\" ;; .cc|.cpp|.cxx|.C) \"$CXX\" -std=c++20 -g -O0 -Wall -Wextra \"$src\" -o \"$out\" ;; *) echo \"Unsupported extension: $ext (only .c .cc .cpp .cxx .C)\" >&2; exit 2 ;; esac"
+        "set -euo pipefail; src=\"${file}\"; ext=\"${fileExtname}\"; relDir=\"${relativeFileDirname}\"; outDir=\"${workspaceFolder}/build/${relativeFileDirname}\"; out=\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"; mkdir -p \"$outDir\"; if [ \"$(uname)\" = \"Darwin\" ]; then CC=clang; CXX=clang++; else CC=gcc; CXX=g++; fi; case \"$ext\" in .c) \"$CC\" -std=c17 -g -O0 -Wall -Wextra -Wpedantic \"$src\" -o \"$out\" ;; .cc|.cpp|.cxx|.C) \"$CXX\" -std=c++20 -g -O0 -Wall -Wextra -Wpedantic \"$src\" -o \"$out\" ;; *) echo \"Unsupported extension: $ext (only .c .cc .cpp .cxx .C)\" >&2; exit 2 ;; esac"
       ],
       "problemMatcher": ["$gcc"],
-      "group": { "kind": "build", "isDefault": true }
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "build: auto (release)",
+      "detail": "Build active C/C++ file with optimizations",
+      "type": "shell",
+      "command": "bash",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "args": [
+        "-lc",
+        "set -euo pipefail; src=\"${file}\"; ext=\"${fileExtname}\"; relDir=\"${relativeFileDirname}\"; outDir=\"${workspaceFolder}/build/${relativeFileDirname}\"; out=\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\"; mkdir -p \"$outDir\"; if [ \"$(uname)\" = \"Darwin\" ]; then CC=clang; CXX=clang++; else CC=gcc; CXX=g++; fi; case \"$ext\" in .c) \"$CC\" -std=c17 -O2 -DNDEBUG -Wall -Wextra -Wpedantic \"$src\" -o \"$out\" ;; .cc|.cpp|.cxx|.C) \"$CXX\" -std=c++20 -O2 -DNDEBUG -Wall -Wextra -Wpedantic \"$src\" -o \"$out\" ;; *) echo \"Unsupported extension: $ext (only .c .cc .cpp .cxx .C)\" >&2; exit 2 ;; esac"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
     },
     {
       "label": "run: active (cwd=run)",
+      "detail": "Run active file executable from run/ directory",
       "type": "shell",
       "command": "bash",
       "options": {
@@ -27,6 +63,25 @@
         "\"${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}\""
       ],
       "dependsOn": "build: auto (debug)",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": false
+      },
+      "isBackground": false,
+      "runOptions": {
+        "instanceLimit": 1
+      }
+    },
+    {
+      "label": "build and run: active (cwd=run)",
+      "detail": "Build and run active file from run/ directory",
+      "dependsOrder": "sequence",
+      "dependsOn": ["build: auto (debug)", "run: active (cwd=run)"],
       "problemMatcher": []
     }
   ]

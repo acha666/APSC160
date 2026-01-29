@@ -2,20 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug active file",
+      "name": "Debug active file (cwd=run)",
       "type": "cppdbg",
       "request": "launch",
-
       "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
       "args": [],
       "stopAtEntry": false,
-
       "cwd": "${workspaceFolder}/run",
       "environment": [],
       "externalConsole": false,
-
+      "MIMode": "lldb",
       "preLaunchTask": "build: auto (debug)",
-
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
       "linux": {
         "MIMode": "gdb",
         "miDebuggerPath": "/usr/bin/gdb"
