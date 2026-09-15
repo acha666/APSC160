@@ -1,10 +1,14 @@
 CompileFlags:
+  # Ignore warning flags inherited from external compile commands, then use a
+  # small, consistent warning set for this workspace.
+  #
+  # clangd does not remove flags added by the same CompileFlags entry.
+  Remove:
+    - "-W*"
   Add:
     - "-Wall"
     - "-Wextra"
     - "-Wpedantic"
-  Remove:
-    - "-W*" # Remove all warnings flags to avoid conflicts
 
 Diagnostics:
   ClangTidy:

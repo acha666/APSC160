@@ -1,5 +1,11 @@
 ## C/C++ Lab Workspace — Quick Guide (Linux / WSL / macOS)
 
+This workspace is designed for **standalone C/C++ exercises**. Each source
+file is expected to compile independently into its own executable.
+
+Multi-file programs that require linking several `.c`/`.cpp` files together
+should use a project-level build system such as Make or CMake instead.
+
 ### 1) Install system dependencies
 
 #### Linux / WSL (Ubuntu/Debian)

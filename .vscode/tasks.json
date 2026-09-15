@@ -76,13 +76,6 @@
       "runOptions": {
         "instanceLimit": 1
       }
-    },
-    {
-      "label": "build and run: active (cwd=run)",
-      "detail": "Build and run active file from run/ directory",
-      "dependsOrder": "sequence",
-      "dependsOn": ["build: auto (debug)", "run: active (cwd=run)"],
-      "problemMatcher": []
     }
   ]
 }
