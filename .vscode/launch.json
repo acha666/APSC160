@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug active file (cwd=run)",
+      "name": "Debug active file (Linux/WSL, cwd=run)",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
@@ -11,8 +11,9 @@
       "cwd": "${workspaceFolder}/run",
       "environment": [],
       "externalConsole": false,
-      "MIMode": "lldb",
-      "preLaunchTask": "build: auto (debug)",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "preLaunchTask": "build",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -20,13 +21,33 @@
           "ignoreFailures": true
         }
       ],
-      "linux": {
-        "MIMode": "gdb",
-        "miDebuggerPath": "/usr/bin/gdb"
+      "presentation": {
+        "group": "platform",
+        "order": 1
       },
       "osx": {
-        "MIMode": "lldb",
-        "externalConsole": true
+        "presentation": {
+          "hidden": true
+        }
+      }
+    },
+    {
+      "name": "Debug active file (macOS, cwd=run)",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "cwd": "${workspaceFolder}/run",
+      "preLaunchTask": "build",
+      "terminal": "integrated",
+      "presentation": {
+        "group": "platform",
+        "order": 2
+      },
+      "linux": {
+        "presentation": {
+          "hidden": true
+        }
       }
     }
   ]

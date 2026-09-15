@@ -4,14 +4,14 @@
 
   "remoteUser": "vscode",
 
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gdb clangd clang-format",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gdb clangd",
 
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools",
         "llvm-vs-code-extensions.vscode-clangd",
-        "xaver.clang-format",
+        "vadimcn.vscode-lldb",
         "esbenp.prettier-vscode",
         "oderwat.indent-rainbow"
       ]

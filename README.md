@@ -12,7 +12,7 @@ should use a project-level build system such as Make or CMake instead.
 
 ```bash
 sudo apt update
-sudo apt install -y build-essential gdb clangd clang-format
+sudo apt install -y build-essential gdb clangd
 ```
 
 #### macOS
@@ -23,21 +23,19 @@ Install Xcode command line tools:
 xcode-select --install
 ```
 
-Install LLVM (clangd / clang-format):
+Install LLVM (clangd):
 
 ```bash
 brew install llvm
 ```
 
-If VS Code can’t find `clangd` or `clang-format` on macOS, set **User Settings** (not in repo):
+If VS Code can’t find `clangd` on macOS, set **User Settings** (not in repo):
 
 - Apple Silicon:
   - `clangd.path`: `/opt/homebrew/opt/llvm/bin/clangd`
-  - `clang-format.executable`: `/opt/homebrew/opt/llvm/bin/clang-format`
 
 - Intel:
   - `clangd.path`: `/usr/local/opt/llvm/bin/clangd`
-  - `clang-format.executable`: `/usr/local/opt/llvm/bin/clang-format`
 
 ---
 
@@ -45,9 +43,9 @@ If VS Code can’t find `clangd` or `clang-format` on macOS, set **User Settings
 
 Open the folder/workspace in VS Code → install recommended extensions:
 
-- `ms-vscode.cpptools` (debugger)
+- `ms-vscode.cpptools` (GDB debugger on Linux / WSL)
 - `llvm-vs-code-extensions.vscode-clangd` (language features)
-- `xaver.clang-format` (C/C++ formatting)
+- `vadimcn.vscode-lldb` (LLDB debugger on macOS)
 - `esbenp.prettier-vscode` (Markdown/JSON/YAML formatting)
 - (Windows + WSL only) `ms-vscode-remote.remote-wsl`
 
@@ -84,8 +82,9 @@ Open the folder/workspace in VS Code → install recommended extensions:
 
 1. Open any `.c` or `.cpp` file.
 2. Press **F5** (or Run → Start Debugging):
-   - Automatically builds with debug symbols (`-g -O0`)
-   - Launches debugger with `cwd = run/`
+   - Automatically runs the `build` task with debug symbols (`-g -O0`)
+   - Linux / WSL uses GDB; macOS uses CodeLLDB
+   - Launches the debugger with `cwd = run/`
    - Detects `.c` vs `.cpp` automatically
    - Output: `build/<relative_path>/<name>`
 
@@ -99,7 +98,7 @@ Use this when you want to:
 
 **Option 1: Quick run (Terminal task)**
 
-- Command Palette → **Tasks: Run Task** → `run: active (cwd=run)`
+- Command Palette → **Tasks: Run Task** → `run`
   - Builds with debug symbols and runs from `run/` directory
   - Faster startup than debugger
   - Shows program output directly in terminal
@@ -123,7 +122,7 @@ Use running (not debugging) when you want to:
 
 ### 5) Formatting
 
-- **C/C++**: `clang-format` (uses repo `.clang-format`)
+- **C/C++**: clangd's built-in formatter (uses repo `.clang-format`)
 - **Markdown/JSON/YAML**: Prettier (uses repo `.prettierrc.json`)
 
 Format current file:

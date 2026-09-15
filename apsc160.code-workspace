@@ -15,12 +15,12 @@
 
     // Language-specific formatters
     "[c]": {
-      "editor.defaultFormatter": "xaver.clang-format",
+      "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
       "editor.tabSize": 2,
       "editor.insertSpaces": true,
     },
     "[cpp]": {
-      "editor.defaultFormatter": "xaver.clang-format",
+      "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
       "editor.tabSize": 2,
       "editor.insertSpaces": true,
     },
@@ -42,5 +42,14 @@
       "**/.DS_Store": true,
       "**/build": false,
     },
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-vscode.cpptools",
+      "llvm-vs-code-extensions.vscode-clangd",
+      "vadimcn.vscode-lldb",
+      "esbenp.prettier-vscode",
+      "oderwat.indent-rainbow",
+    ],
   },
 }

@@ -3,7 +3,7 @@
     "ms-vscode.cpptools",
     "esbenp.prettier-vscode",
     "llvm-vs-code-extensions.vscode-clangd",
-    "xaver.clang-format",
+    "vadimcn.vscode-lldb",
     "oderwat.indent-rainbow"
   ]
 }
